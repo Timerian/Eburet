@@ -1,0 +1,367 @@
+{% extends 'shop/default.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+    .accordion-button:not(.collapsed) {
+    color: rgb(255, 133, 163);
+    background-color: transparent;
+    transition: 1s;
+
+}
+
+.accordion-button:focus {
+    z-index: 3;
+    border-color: rgb(255, 130, 151) !important;
+    outline: 5px;
+    box-shadow: 0 0 2px 2px rgb(255, 130, 151) !important;
+}
+
+.accordion-button.collapsed:hover {
+    color: rgb(255, 133, 163);
+    background-color: transparent;
+}
+
+.accordion-button:active {
+    text-decoration: none !important;
+    border: hidden !important;
+    border-color: rgb(255, 130, 151) !important;
+    box-shadow: 0px !important;
+}
+
+p.fw-light {
+    margin-bottom: 0px !important;
+}
+</style>
+
+<div class="container">
+
+    <div class="container-md mx-auto" style="margin-top: 5%;">
+        <p class="fw-lighter" style="font-size:75px;">ПОМОЩЬ</p>
+    </div>
+
+    <div class="container mx-auto">
+        <div class="accordion accordion-flush" id="accordionFlushExample" style="background-color: transparent;">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                        <p class="fw-light" style="font-size:25px;">
+                            ДОСТАВКА И ОПЛАТА
+                        </p>
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body mx-auto">
+                        <p class="fw-light m-0" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Изготовление предметов возможно только при 100% предоплате. К оплате принимаются банковские
+                            карты и платежи Yandex PAY.
+                        </p>
+                        <br>
+                        <p class="fw-light m-0" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Доставка предметов до двери бесплатна по всей территории России. Мы пользуемся услугами
+                            транспортных компаний СДЭК, АТЕК и Деловые Линии. Дату и время получения можно согласовать
+                            напрямую с курьером.
+                        </p>
+                        <br>
+                        <p class="fw-light m-0" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Доставка в другие страны оплачивается отдельно.
+                        </p>
+                        <br>
+                        <p class="fw-light m-0" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Для срочных ситуаций у нас есть опция ускоренной доставки стоимостью 4 000₽. Доступна для
+                            Санкт-Петербурга и области, Москвы и области.
+                        </p>
+                        <br>
+                        <p class="fw-light m-0" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Если вы хотите воспользоваться другой транспортной компанией, оформить срочную доставку или
+                            забрать заказ самовывозом – свяжитесь с нами любым удобным для вас способом.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        <p class="fw-light" style="font-size:25px;">
+                            ГАРАНТИЯ И ВОЗВРАТ
+                        </p>
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p class="fw-light m-0" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Если по какой-то причине вам не подошел предмет, вы можете вернуть его в течение 14 дней (с
+                            момента
+                            получения). Обратная отправка предметов осуществляется со стороны покупателя. Для оформления
+                            возврата свяжитесь с нами любым удобным для вас способом.
+                        </p>
+                        <br>
+                        <p class="fw-light m-0" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Возврату не подлежат: предметы надлежащего качества созданные по индивидуальным эскизам или
+                            выполненные в кастомном цвете / градиенте.
+                        </p>
+                        <br>
+                        <p class="fw-light m-0" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Гарантия на предметы составляет 18 месяцев (с момента получения). Если вы обнаружили брак в
+                            процессе
+                            эксплуатации или при получении – свяжитесь с нами, мы обязательно поможем.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        <p class="fw-light" style="font-size:25px;">
+                            ДОСТУПНЫЕ ЦВЕТА
+                        </p>
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Если вы не нашли необходимого оттенка в нашей фирменной палитре, можете воспользоваться
+                            услугой создания индивидуального цветового решения. Для этого нам понадобиться лишь номер
+                            номер желаемого цвета (по цветовому стандарту RAL, Pantone или NCS).
+                        </p>
+                        <br>
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Сроки изготовления предметов в индивидуальном цвете – 60 календарных дней. Cтоимость
+                            разработки составляет 20 000₽ (предмет оплачивается отдельно).
+                        </p>
+                        <br>
+                        <p class="fw-light " style="font-size:18px;color: rgb(70, 70, 70);">
+                            Также мы можем создать предмет в градиентной расцветке – плавной растяжке, состоящей из
+                            нескольких цветов. Советуем сочетать от 2х до 4х оттенков (в зависимости от размера
+                            предмета), но мы всегда открыты к смелым экспериментам. Заказать градиентный предмет можно
+                            на сайте, выбрав строчку «градиент» в опции цвета. Желаемые оттенки необходимо указать в
+                            комментариях к заказу.
+                        </p>
+                        <br>
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Сроки изготовления предметов в градиентной расцветке – 30 календарных дней. Cтоимость
+                            разработки составляет 20 000₽ (предмет оплачивается отдельно).
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                        <p class="fw-light" style="font-size:25px;">
+                            ИЗГОТОВЛЕНИЕ НА ЗАКАЗ
+                        </p>
+                    </button>
+                </h2>
+                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Для нас важно не производить предметы чужого дизайна. Если вам нравится уже существующий
+                            интерьерный объект – мы можем взять его за основу, но нам необходимо изменить и переработать
+                            идею.
+                        </p>
+                        <br>
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Разработка нового предмета включает в себя:
+                            <br>
+                            • создание модели
+                            <br>
+                            • тестирование ее производства и последующего функционала
+                        </p>
+                        <br>
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Именно поэтому цена таких предметов выше, а сроки изготовления дольше. Разработка
+                            оплачивается один раз. Например, если вы хотите заказать 3 одинаковых полки – услуга
+                            оплачивается единожды, за разработку самой модели. Сроки изготовления нового предмета – 50
+                            календарных дней.
+                        </p>
+                        <br>
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Также мы можем менять размеры предметов из нашей основной линейки. Стоимость такого предмета
+                            растет пропорционально его увеличению. Сроки изготовления увеличенного предмета – 50
+                            календарных дней. Cтоимость услуги составляет от 5 000₽ до 20 000₽, в зависимости от
+                            пропорций будущего предмета (сам предмет оплачивается отдельно).
+                        </p>
+                        <br>
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Мы всегда открыты к диалогу и рассматриваем каждый случай отдельно. Для уточнения
+                            интересующих деталей свяжитесь с нами любым удобным для вас способом.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                        <p class="fw-light" style="font-size:25px;">
+                            БИЗНЕСУ
+                        </p>
+                    </button>
+                </h2>
+                <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Мы принимаем оплату по реквизитам на расчётный счет без НДС (в связи с применением упрощенной системы налогообложения в соответствии с п. 2 ст. 346.11 НК РФ). Для оформления корпоративного заказа добавьте предметы в корзину, укажите необходимый ИНН и выберите опцию «оплата юрлица». Мы пришлем счет на электронную почту или в удобный вам мессенджер.
+                        </p>
+                        <br>
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Предложение для оптовых заказов:
+                            <br>
+                            • скидка 5% при заказе от 10 предметов (в одном цвете)
+                            <br>
+                            • скидка 10% при заказе от 20 предметов (в одном цвете)
+                            <br>
+                            Доставка оплачивается отдельно.
+                        </p>
+                        <br>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingSix">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+                        <p class="fw-light" style="font-size:25px;">
+                            УХОД ЗА ПРЕДМЕТАМИ
+                        </p>
+                    </button>
+                </h2>
+                <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Предметы не боятся воды и солнца – они могут стоять в ванной комнате или на террасе. При сильном перепаде температур (мороз) предмет может стать хрупким – важно не допускать ударов по поверхности предмета или его падения. 
+                        </p>
+                        <br>
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Мебель не треснет под большим весом – максимальная нагрузка варьируется от 100кг до 150кг (в зависимости от предмета).
+                        </p>
+                        <br>
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Предметы не расплавятся от горячей посуды – температура плавления материала = 200 градусов цельсия. Но их может повредить открытый огонь или раскаленные элементы.
+                        </p>
+                        <br>
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Для очищения предметов от грязи советуем использовать мыльный раствор. В случае с более серьезными загрязнениями может помочь спиртовой раствор. Не рекомендуем использовать профессиональные или агрессивные химикаты. Забившуюся между слоев пыль можно вычистить щеткой с мягким ворсом или специальной насадкой для пылесоса.
+                        </p>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingSeven">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseSeven">
+                        <p class="fw-light" style="font-size:25px;">
+                            ПРЕДСТАВИТЕЛИ
+                        </p>
+                    </button>
+                </h2>
+                <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingSeven"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            На данный момент у нас нет собственного шоурума. Но вы всегда можете найти нас у официальных представителей:
+                        </p>
+                        <br>
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            • Москва – Heritage (ул. Петровка, 20/1)
+                            <br>
+                            • Санкт-Петербург – Design Dealer Spot (Большой проспект П.С., 28)
+                            <br>
+                            • Краснодар – Interior Saloni (ул. Ставропольская, 199)
+                            <br>
+                            • Анапа – Casa Aqua (ул. Толстого, 111А).
+                            <br>
+                        </p>
+                        <br>
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Чтобы вам было удобнее определиться с выбором цвета, мы можем отправить вам образцы материалов в необходимых цветах. Отправление производиться курьерской доставкой, стоимость образцов = 1 000 ₽.
+                        </p>
+                        <br>
+                    </div>
+                </div>
+            </div> 
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingEight">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseEight" aria-expanded="false" aria-controls="flush-collapseEight">
+                        <p class="fw-light" style="font-size:25px;">
+                            ПОДАРОЧНЫЙ СЕРТИФИКАТ
+                        </p>
+                    </button>
+                </h2>
+                <div id="flush-collapseEight" class="accordion-collapse collapse" aria-labelledby="flush-headingEight"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Электронный сертификат представляет собой письмо с индивидуальным промокодом. После оформления покупки мы отправим его на указанную вами почту. Если вы хотите направить его напрямую к тому, кому вы хотите сделать подарок – укажите почту счастливого получателя в комментариях к заказу. 
+                        </p>
+                        <br>
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Если вы не получили письмо с сертификатом в течение двух часов с момента покупки, пожалуйста, свяжитесь с нами любым удобным способом. Мы обязательно поможем решить проблему.
+                        </p>
+                        <br>
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Сертификатом можно воспользоваться один раз. Распространяется на все товары с сайта eburtet.com и на заказы, оформленные через менеджера студии. Если сумма покупки меньше, чем номинал сертификата – свяжитесь с нами и мы пришлем вам код на оставшуюся сумму.
+                        </p>
+                        <br>
+                        <p class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            Подарочный сертификат не подлежит возврату. Сроки действия составляют 1 год с момента получения. Если вы не успели использовать его в течение этого времени – свяжитесь с нами, мы продлим срок действия еще на полгода.
+                        </p>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingNine">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseNine" aria-expanded="false" aria-controls="flush-collapseNine">
+                        <p class="fw-light" style="font-size:25px;">
+                            УСЛОВИЯ И ПОЛОЖЕНИЯ
+                        </p>
+                    </button>
+                </h2>
+                <div id="flush-collapseNine" class="accordion-collapse collapse" aria-labelledby="flush-headingNine"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <a href="#" class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            • Политика конфиденциальности
+                        </a>
+                        <br>
+                        <a href="#" class="fw-light" style="font-size:18px;color: rgb(70, 70, 70);">
+                            • Договор оферты
+                        </a>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+</div>
+
+{% endblock content %}

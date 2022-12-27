@@ -1,1 +1,220 @@
-<h5>STORE</h5>
+{% extends 'shop/default.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+    label {
+        font-size: 18px;
+        color: rgb(80, 80, 80);
+    }
+
+    input.form-control {
+        border-radius: 30px/30px;
+        padding: 0.75rem 1.5rem;
+    }
+</style>
+
+<div class="album py-5" style="margin-top: 5%;">
+    <div class="container">
+        <div class="row row-cols row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+                <a href="#" style="text-decoration: none; color: rgb(70, 70, 70)">
+                    <div class="card" style="border-style: none; background-color: transparent;">
+                        <img src="..." alt="..." class="card-img-top">
+                        <div class="card-body text-center font-monospace">
+                            <p class="card-text">Item</p>
+                            <p class="card-text fw-light" style="color: rgb(70, 70, 70);">Price</p>
+                            <p class="card-text fw-light">Comment</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="#" style="text-decoration: none; color: rgb(70, 70, 70)">
+                    <div class="card">
+                        <img src="..." alt="..." class="card-img-top">
+                        <div class="card-body text-center">
+                            <p class="card-text">Item</p>
+                            <p class="card-text fw-light" style="color: rgb(70, 70, 70);">Price</p>
+                            <p class="card-text fw-light">Comment</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="#" style="text-decoration: none; color: rgb(70, 70, 70)">
+                    <div class="card">
+                        <img src="..." alt="..." class="card-img-top">
+                        <div class="card-body text-center">
+                            <p class="card-text">Item</p>
+                            <p class="card-text fw-light" style="color: rgb(70, 70, 70);">Price</p>
+                            <p class="card-text fw-light">Comment</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-lg" data-bs-toggle="modal" data-bs-target="#cart">КОРЗИНА</button>
+
+        <div class="modal fade" id="cart" tabindex="-1">
+
+            <div class="modal-dialog" style="max-width: 1000px;">
+                <div class="modal-content p-3">
+                    <div class="modal-header">
+                        <h5 class="modal-title">КОРЗИНА</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>ITEMS</p>
+                        <hr>
+
+                        <div class="row">
+
+                            <div class="col-md-5 col-lg-4 order-md-last w-50">
+                                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="text-primary">Your cart</span>
+                                    <span class="badge bg-primary rounded-pill">3</span>
+                                </h4>
+
+                                <ul class="list-group mb-3">
+                                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                                        <div>
+                                            <h6 class="my-0">Product name</h6>
+                                            <small class="text-muted">Brief description</small>
+                                        </div>
+                                        <span class="text-muted">$12</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                                        <div>
+                                            <h6 class="my-0">Second product</h6>
+                                            <small class="text-muted">Brief description</small>
+                                        </div>
+                                        <span class="text-muted">$8</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                                        <div>
+                                            <h6 class="my-0">Third item</h6>
+                                            <small class="text-muted">Brief description</small>
+                                        </div>
+                                        <span class="text-muted">$5</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between bg-light">
+                                        <div class="text-success">
+                                            <h6 class="my-0">Promo code</h6>
+                                            <small>EXAMPLECODE</small>
+                                        </div>
+                                        <span class="text-success">−$5</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span>Total (USD)</span>
+                                        <strong>$20</strong>
+                                    </li>
+                                </ul>
+    
+                                <form class="card p-2">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Promo code">
+                                        <button type="submit" class="btn btn-secondary">Redeem</button>
+                                    </div>
+                                </form>
+                            </div>
+    
+                            <div class="col-md-7 col-lg-6">
+    
+                                <form class="needs-validation" novalidate="">
+    
+                                    <label for="firstName" class="form-label">Имя</label>
+                                    <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                        required="">
+                                    <div class="invalid-feedback">
+                                        Пожалуйтса, введите корректное имя.
+                                    </div>
+    
+                                    <br>
+    
+                                    <label for="lastName" class="form-label">Фамилия</label>
+                                    <input type="text" class="form-control" id="lastName" placeholder="" value=""
+                                        required="">
+                                    <div class="invalid-feedback">
+                                        Пожалуйста, введите корректную фамилию.
+                                    </div>
+    
+                                    <br>
+    
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                                    <div class="invalid-feedback">
+                                        Пожалуйста, введите корректный адрес электронной почты.
+                                    </div>
+    
+                                    <br>
+    
+                                    <label for="tel" class="form-label">Номер телефона</label>
+                                    <input type="tel" class="form-control" id="tel">
+                                    <div class="invalid-feedback">
+                                        Пожалуйста, введите корректный адрес электронной почты.
+                                    </div>
+    
+                                    <br>
+    
+                                    <label for="address" class="form-label">Адрес доставки</label>
+                                    <input type="text" class="form-control" id="address"
+                                        placeholder="Москва, ул. Большие Каменщики, д. 9, стр. 9, кв. 99" required="">
+                                    <div class="invalid-feedback">
+                                        Пожалуйста, введите корректный адрес доставки.
+                                    </div>
+    
+                                    <br>
+    
+                                    <label for="comment" class="form-label">Комментарий к заказу</label>
+                                    <input type="text" class="form-control" id="comment" required="">
+                                    <div class="invalid-feedback">
+                                        Please enter your shipping address.
+                                    </div>
+    
+                                    <br>
+    
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="agreement">
+                                        <label class="form-check-label" for="agreement">Согласие на обработку персональных
+                                            данных, с <a href="">пользовательским соглашением</a> и <a href="">публичной
+                                                офертой</a>.</label>
+                                    </div>
+    
+                                    <br>
+    
+                                    <h4 class="mb-3">Тип оплаты</h4>
+    
+                                    <div class="my-3">
+                                        <div class="form-check">
+                                            <input id="credit" name="paymentMethod" type="radio" class="form-check-input"
+                                                checked="" required="">
+                                            <label class="form-check-label" for="credit">Оплата картой</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input id="debit" name="paymentMethod" type="radio" class="form-check-input"
+                                                required="">
+                                            <label class="form-check-label" for="debit">Безналичная оплата для юр.
+                                                лиц</label>
+                                        </div>
+                                    </div>
+                                    <hr class="my-4">
+                                    <button class="w-100 btn btn-primary btn-lg" type="submit">Оплатить</button>
+                                </form>>
+    
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

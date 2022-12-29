@@ -45,6 +45,7 @@ class Item(models.Model):
     guarantee = models.TextField(max_length=500, verbose_name="Гарантийный срок")
     parameters = models.TextField(max_length=300, default=None, verbose_name="Параметры")
     production_time = models.CharField(max_length=150, verbose_name="Время изготовления", blank=True)
+    comment = models.CharField(max_length=100, blank=True, null=True, default=None, verbose_name="Комментарий")
 
     categories = models.ManyToManyField(Category, related_name="categories", verbose_name="Категории")
 
@@ -89,8 +90,8 @@ class ItemColor(models.Model):
 
     quantity = models.IntegerField(default=0)
 
-    item = models.ForeignKey(Item, on_delete=models.CASCADE, verbose_name="Предмет")
-    color = models.ForeignKey(Color, on_delete=models.CASCADE, verbose_name="Цвет предмета")
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, verbose_name="Предмет", related_name="colors")
+    color = models.ForeignKey(Color, on_delete=models.CASCADE, verbose_name="Цвет предмета", related_name="items")
 
     def __str__(self):
         return f"{self.item.name} | {self.color} | {self.quantity}"

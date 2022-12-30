@@ -40,7 +40,7 @@ class Item(models.Model):
     description = models.TextField(max_length=500, verbose_name="Описание")
     concept = models.CharField(max_length=100, verbose_name="Концепт", blank=True, null=True)
     material = models.TextField(max_length=300, verbose_name="Материал")
-    equipment = models.TextField(max_length=500, verbose_name="Комплектация")
+    equipment = models.TextField(max_length=500, blank=True, null = True, verbose_name="Комплектация")
     peculiarities = models.TextField(max_length=500, verbose_name="Особенности")
     guarantee = models.TextField(max_length=500, verbose_name="Гарантийный срок")
     parameters = models.TextField(max_length=300, default=None, verbose_name="Параметры")

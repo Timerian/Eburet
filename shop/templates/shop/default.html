@@ -12,7 +12,9 @@
 </head>
 
 <body style="background-color: rgb(250, 250, 250);">
-
+	{% url 'store' as store %}
+	{% if request.path != store %}
+	{% if store not in request.path %}
 	<!-- Navigation bar -->
 	<!-- <style>
 		.bg-light {
@@ -52,6 +54,8 @@
 			</div>
 		</div>
 	</nav>
+	{% endif %}
+	{% endif %}
 
 	<!-- Showcase -->
 	<section class="bg-light text-dark">

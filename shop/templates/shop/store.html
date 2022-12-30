@@ -18,7 +18,7 @@
 
 <div class="album py-5" style="margin-top: 5%;">
     <div class="container">
-        <div class="row row-cols row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="row row-cols row-cols-sm-2 row-cols-md-3 g-3 mx-auto">
             {% for item in items %}
 
             {% with item.imageitem_set.all|first as imageitem %}
@@ -26,8 +26,12 @@
 
             <div class="col">
                 <a href="/store/{{ item.id }}" style="text-decoration: none; color: rgb(70, 70, 70)">
-                    <div class="card" style="border-style: none; background-color: transparent;">
-                        <img src="{% get_media_prefix %}/{{ imagename }}" alt="..." class="card-img-top">
+                    <div class="card text-center" style="border-style: none; background-color: transparent;">
+                        <div class="d-flex" style="height: 555px;">
+                            <div class="m-auto container">
+                                <img src="{% get_media_prefix %}/{{ imagename }}" alt="..." class="card-img-top">
+                            </div>
+                        </div>
                         <div class="card-body text-center font-monospace">
                             <p class="card-text">{{ item.name }}</p>
                             <p class="card-text fw-light" style="color: rgb(70, 70, 70);">{{ item.price }}</p>
@@ -99,7 +103,7 @@
                                         <strong>$20</strong>
                                     </li>
                                 </ul>
-    
+
                                 <form class="card p-2">
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="Promo code">
@@ -107,77 +111,78 @@
                                     </div>
                                 </form>
                             </div>
-    
+
                             <div class="col-md-7 col-lg-6">
-    
+
                                 <form class="needs-validation" novalidate="">
-    
+
                                     <label for="firstName" class="form-label">Имя</label>
                                     <input type="text" class="form-control" id="firstName" placeholder="" value=""
                                         required="">
                                     <div class="invalid-feedback">
                                         Пожалуйтса, введите корректное имя.
                                     </div>
-    
+
                                     <br>
-    
+
                                     <label for="lastName" class="form-label">Фамилия</label>
                                     <input type="text" class="form-control" id="lastName" placeholder="" value=""
                                         required="">
                                     <div class="invalid-feedback">
                                         Пожалуйста, введите корректную фамилию.
                                     </div>
-    
+
                                     <br>
-    
+
                                     <label for="email" class="form-label">Email</label>
                                     <input type="email" class="form-control" id="email" placeholder="you@example.com">
                                     <div class="invalid-feedback">
                                         Пожалуйста, введите корректный адрес электронной почты.
                                     </div>
-    
+
                                     <br>
-    
+
                                     <label for="tel" class="form-label">Номер телефона</label>
                                     <input type="tel" class="form-control" id="tel">
                                     <div class="invalid-feedback">
                                         Пожалуйста, введите корректный адрес электронной почты.
                                     </div>
-    
+
                                     <br>
-    
+
                                     <label for="address" class="form-label">Адрес доставки</label>
                                     <input type="text" class="form-control" id="address"
                                         placeholder="Москва, ул. Большие Каменщики, д. 9, стр. 9, кв. 99" required="">
                                     <div class="invalid-feedback">
                                         Пожалуйста, введите корректный адрес доставки.
                                     </div>
-    
+
                                     <br>
-    
+
                                     <label for="comment" class="form-label">Комментарий к заказу</label>
                                     <input type="text" class="form-control" id="comment" required="">
                                     <div class="invalid-feedback">
                                         Please enter your shipping address.
                                     </div>
-    
+
                                     <br>
-    
+
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" id="agreement">
-                                        <label class="form-check-label" for="agreement">Согласие на обработку персональных
+                                        <label class="form-check-label" for="agreement">Согласие на обработку
+                                            персональных
                                             данных, с <a href="">пользовательским соглашением</a> и <a href="">публичной
                                                 офертой</a>.</label>
                                     </div>
-    
+
                                     <br>
-    
+
                                     <h4 class="mb-3">Тип оплаты</h4>
-    
+
                                     <div class="my-3">
                                         <div class="form-check">
-                                            <input id="credit" name="paymentMethod" type="radio" class="form-check-input"
-                                                checked="" required="">
+                                            <input id="credit" name="paymentMethod" type="radio"
+                                                class="form-check-input" checked="" required="">
                                             <label class="form-check-label" for="credit">Оплата картой</label>
                                         </div>
                                         <div class="form-check">
@@ -190,7 +195,7 @@
                                     <hr class="my-4">
                                     <button class="w-100 btn btn-primary btn-lg" type="submit">Оплатить</button>
                                 </form>>
-    
+
                             </div>
                         </div>
 

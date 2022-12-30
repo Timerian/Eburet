@@ -1,0 +1,152 @@
+{% extends 'shop/default.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="album py-5" style="margin-top: 2%;">
+    <div class="container-lg" style="margin-left: 10%;">
+        <div class="row">
+            <div class="gallery col">
+                <div class="side-view">
+                    {% for imageitem in item.imageitem_set.all %}
+                    <img src="{% get_media_prefix %}/{{ imageitem.image.name }}" alt="" onclick="change(this.src)"
+                        id="side" class="side">
+                    {% endfor %}
+                </div>
+
+                <div class="main-view d-flex col">
+                    <div class="container m-auto">
+                        {% with item.imageitem_set.all|first as imageitem %}
+                        {% with imageitem.image.name as imagename %}
+                        <img src="{% get_media_prefix %}/{{ imagename }}" alt="" id="main" style="width: 100%;">
+                        {% endwith %}
+                        {% endwith %}
+                    </div>
+                </div>
+            </div>
+            <style>
+                div p .pr-2 {
+                    margin-bottom: 0;
+                }
+            </style>
+            <div class="capture col m-0">
+                <p class="fw-light hr-2">
+                    {{ item.name }}
+                </p>
+                <p class="fw-light pr-2">
+                    Артикул: {{ item.vendor_name }}
+                </p>
+                <p class="hr-3">
+                    {{ item.price }} р.
+                </p>
+
+
+                <style>
+                    .btn-colored {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50% / 50%;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                        position: relative;
+                        top: -20px;
+                    }
+                </style>
+
+                {% with item.colors.all as item_colors %}
+                <div class="gallery">
+                    <div class="row d-flex">
+                        {% for item in item_colors %}
+                        <div class="col">
+                            <div class="container m-auto d-grid justify-content-center"
+                                style="width: 30px; height: 30px; border-radius: 50% / 50%; border: 2px solid rgb(121, 121, 121); padding: 23px 23px;">
+                                <button class="btn btn-colored"
+                                    style="background-color: {{ item.color }};"></button>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+                {% endwith %}
+
+                <hr>
+                <p class="fw-light hr-3">
+                    {{ item.concept }}
+                </p>
+                <p class="fw-light pr-2">
+                    {{ item.description }}
+                </p>
+                <p class="pr-1">
+                    Параметры:
+                </p>
+                <p class="fw-light pr-2 m-0">
+                <div class="fw-light pr-2">
+                    {{ item.parameters|linebreaks }}
+                </div>
+                </p>
+                {% if item.equipment %}
+                <p class="pr-1">
+                    Комплектация:
+                </p>
+                <p class="fw-light pr-2">
+                    {{ item.equipment }}
+                </p>
+                {% endif %}
+                <p class="pr-1">
+                    Сроки изготовления:
+                </p>
+                <p class="fw-light pr-2">
+                    {{ item.production_time }}
+                </p>
+                <p class="pr-1">
+                    Материал:
+                </p>
+                <p class="fw-light pr-2">
+                    {{ item.material }}
+                </p>
+                <p class="pr-1">
+                    Особенности:
+                </p>
+                <p class="fw-light pr-2">
+                    {{ item.peculiarities }}
+                </p>
+                <p class="pr-1">
+                    Гарантийный срок:
+                </p>
+                <p class="fw-light pr-2">
+                    {{ item.guarantee }}
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    const change = src => {
+        document.getElementById('main').src = src;
+    }
+
+    let sides = document.querySelectorAll(".side");
+
+    let i;
+
+    function unselectAll() {
+        for (i = 0; i < sides.length; i++) {
+            sides[i].style.border = "";
+        }
+    }
+
+    sides.forEach(side => {
+        side.addEventListener('click', function () {
+            unselectAll();
+            this.style.border = "1px solid rgb(200, 200, 200)"
+        })
+    })
+
+</script>
+{% endblock content %}

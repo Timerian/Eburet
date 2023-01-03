@@ -3,8 +3,8 @@
 {% load static %}
 
 {% block content %}
-<div class="album py-5" style="margin-top: 2%;">
-    <div class="container-lg" style="margin-left: 10%;">
+<div class="album py-5 m-auto" style="margin-top: 2%;">
+    <div class="container-lg" style="margin-left: 15%;">
         <div class="row">
             <div class="gallery col">
                 <div class="side-view">
@@ -29,7 +29,7 @@
                     margin-bottom: 0;
                 }
             </style>
-            <div class="capture col m-0">
+            <div class="capture col m-1">
                 <p class="fw-light hr-2">
                     {{ item.name }}
                 </p>
@@ -43,24 +43,25 @@
 
                 <style>
                     .btn-colored {
-                        width: 40px;
-                        height: 40px;
+                        width: 28px;
+                        height: 28px;
                         border-radius: 50% / 50%;
                         display: block;
                         margin-left: auto;
                         margin-right: auto;
                         position: relative;
-                        top: -20px;
+                        top: -14px;
                     }
                 </style>
 
                 {% with item.colors.all as item_colors %}
                 <div class="gallery">
-                    <div class="row d-flex">
+                    <div class="row m-0">
+                        <p class="pr-2 p-0 my-2 fw-light">Цвет:</p>
                         {% for item in item_colors %}
-                        <div class="col">
-                            <div class="container m-auto d-grid justify-content-center"
-                                style="width: 30px; height: 30px; border-radius: 50% / 50%; border: 2px solid rgb(121, 121, 121); padding: 23px 23px;">
+                        <div class="col p-0" style="max-width: max-content;">
+                            <div class="container d-grid justify-content-center mx-1"
+                                style="width: 20px; height: 20px; border-radius: 50% / 50%; border: 2px solid rgb(187, 187, 187); padding: 15px 15px;">
                                 <button class="btn btn-colored"
                                     style="background-color: {{ item.color }};"></button>
                             </div>
@@ -71,7 +72,18 @@
                 </div>
                 {% endwith %}
 
-                <hr>
+                <div class="d-flex mx-auto my-4" >
+                    <div class="m-1 p-3" style="display: inline-flex; align-items: center; border-radius: 50px 50px; border: 1px solid black; ">
+                        <img src="/media/minus_item.png" width="16px" height="16px" class="mx-1" alt="">
+                        <span class="text-muted mx-3">1</span>
+                        <img src="/media/plus_item.png" width="16px" height="16px" class="mx-1" alt="">
+                    </div>
+
+                    <div class="m-1 p-3" style="display: inline-flex; align-items: center; background-color: rgb(255, 130, 151); border-radius: 50px 50px;">
+                        <p class="mx-5 my-0" style="color: aliceblue;">КУПИТЬ</p>
+                    </div>
+                </div>
+
                 <p class="fw-light hr-3">
                     {{ item.concept }}
                 </p>

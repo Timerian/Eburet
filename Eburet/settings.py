@@ -134,3 +134,7 @@ PHONE_NUMBER_DEFAULT = "RU"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
+
+import mimetypes
+
+mimetypes.add_type("application/javascript", ".js", True)

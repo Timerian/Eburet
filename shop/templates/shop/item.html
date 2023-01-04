@@ -78,10 +78,11 @@
                         <span class="text-muted mx-3">1</span>
                         <img src="/media/plus_item.png" width="16px" height="16px" class="mx-1" alt="">
                     </div>
-
-                    <div class="m-1 p-3" style="display: inline-flex; align-items: center; background-color: rgb(255, 130, 151); border-radius: 50px 50px;">
-                        <p class="mx-5 my-0" style="color: aliceblue;">КУПИТЬ</p>
-                    </div>
+                    <a href="#" class="update-cart" data-item="{{ item.id }}" data-action="add" style="text-decoration: none;">
+                        <div class="m-1 p-3" style="display: inline-flex; align-items: center; background-color: rgb(255, 130, 151); border-radius: 50px 50px;">
+                            <p class="mx-5 my-0" style="color: aliceblue;">КУПИТЬ</p>
+                        </div>
+                    </a>
                 </div>
 
                 <p class="fw-light hr-3">
@@ -145,10 +146,9 @@
 
     let sides = document.querySelectorAll(".side");
 
-    let i;
 
     function unselectAll() {
-        for (i = 0; i < sides.length; i++) {
+        for (let i = 0; i < sides.length; i++) {
             sides[i].style.border = "";
         }
     }
@@ -159,6 +159,5 @@
             this.style.border = "1px solid rgb(200, 200, 200)"
         })
     })
-
 </script>
 {% endblock content %}

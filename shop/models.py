@@ -10,6 +10,7 @@ class Color(models.Model):
         verbose_name = "Цвет"
         verbose_name_plural = "Цвета"
 
+    name = models.CharField(max_length=50, verbose_name='Название цвета', blank=True, null=True)
     color = ColorField(default='000000')
 
     def __str__(self):
@@ -66,16 +67,16 @@ class Order(models.Model):
         (ENTITY, 'Cashless payment for entity')
     ]
 
-    first_name = models.CharField(max_length=100, verbose_name="Имя")
-    second_name = models.CharField(max_length=100, verbose_name="Фамилия")
+    first_name = models.CharField(max_length=100, verbose_name="Имя", null=True)
+    second_name = models.CharField(max_length=100, verbose_name="Фамилия", null=True)
     email = models.EmailField(verbose_name="Адрес электронной почты")
-    phone_number = PhoneNumberField(null=False, unique=True, verbose_name="Номер телефона")
-    address = models.TextField(max_length=500, verbose_name="Адрес")
-    comment = models.TextField(max_length=500, verbose_name="Комментарии к заказу")
-    promo_code = models.CharField(max_length=12, verbose_name="Промокод")
-    pay_method = models.CharField(max_length=3, choices=PAYMENT_METHODS, default=INDIVIDUAL, verbose_name="Метод оплаты")
+    phone_number = PhoneNumberField(unique=True, verbose_name="Номер телефона", null=True)
+    address = models.TextField(max_length=500, verbose_name="Адрес", null=True)
+    comment = models.TextField(max_length=500, verbose_name="Комментарии к заказу", null=True)
+    promo_code = models.CharField(max_length=12, verbose_name="Промокод", null=True)
+    pay_method = models.CharField(max_length=3, choices=PAYMENT_METHODS, default=INDIVIDUAL, verbose_name="Метод оплаты", null=True)
     agreement = models.BooleanField(default=False, verbose_name="Согласие на обработку персональных данных")
-    created_date = models.DateTimeField(auto_now_add=True, verbose_name="Дата оформления заказа")
+    created_date = models.DateTimeField(auto_now_add=True, verbose_name="Дата оформления заказа", null=True)
     complete = models.BooleanField(default=False, null=True, blank=True, verbose_name="Выполнен")
 
     def __str__(self):
@@ -129,3 +130,8 @@ class ImageItem(models.Model):
 
     def __str__(self):
         return f"{self.item.name} | {self.image.name}"
+
+
+# class Cart():
+#     def __init__(self):
+        

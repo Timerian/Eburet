@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'colorfield',
 
-    'shop'
+    'shop',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +138,5 @@ MEDIA_URL = '/media/'
 import mimetypes
 
 mimetypes.add_type("application/javascript", ".js", True)
+
+CART_SESSION_ID = 'cart'

@@ -1,49 +1,60 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.generic import ListView, DetailView
+from django.conf import settings
+
+import json
 
 from .models import *
+
+from .utils import cookieData
 
 
 def main(request):
     context = {}
     return render(request, "shop/main.html")
 
-# def store(request):
-#     context = {}
-#     return render(request, "shop/store.html", context)
+def itemList(request):
+    items = Item.objects.all()
+
+    context = cookieData(request, id)
+    context['items'] = items
+    return render(request, "shop/store.html", context)
 
 
-class ItemList(ListView):
-    model = Item
-    context_object_name = "items"
-    template_name = "shop/store.html"
+def itemDetail(request, id):
+    item = Item.objects.get(id=id)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    context = cookieData(request, id)
+    context['item'] = item
+    return render(request, 'shop/item.html', context)
 
-        
+@ensure_csrf_cookie
+def updateItem(request):
+    data = json.loads(request.body)
+    item_id = data['item_id']
+    action = data['action']
+    color = data['color']
+    # quantity = data['quantity']
 
-        return context
+    itemColor = ItemColor.objects.get(item=item_id, color=Color.objects.get(color=color))
+
+    session = request.session
+    order = session.get(settings.CART_SESSION_ID)
+    if not order:
+        order = session[settings.CART_SESSION_ID] = Order.objects.create()
+        orderItem = OrderItem.objects.create(order=order, item=itemColor)
+
+    # if action == 'add':
+    #     orderItem.quantity = (orderItem.quantity + quantity)
+
+    print('Action:', action)
+    print('Item ID:', item_id)
 
 
-class ItemDetail(DetailView):
-    model = Item
-    context_object_name = "item"
-    template_name = "shop/item.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # context["colors"] = Item.colors.all()
-        return context
-
-
-def cart(request):
-    context = {}
-    return render(request, "shop/cart.html", context)
-
-def checkout(request):
-    context = {}
-    return render(request, "shop/checkout.html", context)
+    return JsonResponse('Item added', safe=False)
 
 def about(request):
     context = {}

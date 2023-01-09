@@ -117,7 +117,7 @@
                             {% for item in item_colors %}
                             <div class="option">
                                 <input class="select-color" type="radio" id="check{{item.id}}" name="radio"
-                                    data-color="{{item.color}}">
+                                    data-color="{{item.color}}" data-itemcolorid="{{item.id}}">
                                 <label for="check{{item.id}}" style="--item-color: {{item.color}}"></label>
                             </div>
                             {% endfor %}
@@ -187,23 +187,33 @@
                         for (i = 1; i < 20; i++) {
                             var span = document.createElement('span');
                             span.className += 'number'
+                            if (i == 1){
+                                span.className += ' update-cart';
+                                span.style.display = 'initial'; 
+                            }
                             span.textContent = i;
                             numbers.appendChild(span);
                         }
+
+                        console.log(document.querySelector('span.update-cart').textContent);
 
                         var num = document.getElementsByClassName('number');
                         var index = 0;
 
                         function nextNum(){
                             num[index].style.display = 'none';
+                            num[index].className = 'number';
                             index = (index + 1) % num.length;
                             num[index].style.display = 'initial';
+                            num[index].className += ' update-card'
                         }
 
                         function prevNum(){
                             num[index].style.display = 'none';
+                            num[index].className = 'number';
                             index = (index - 1 + num.length) % num.length;
                             num[index].style.display = 'initial';
+                            num[index].className += ' update-card'
                         }
                     </script>
                     <button class="btn p-0 update-cart" data-item="{{ item.id }}" data-action="add"

@@ -2,31 +2,36 @@ var updateBtns = document.getElementsByClassName('update-cart')
 
 for (var i = 0; i < updateBtns.length; i++){
     updateBtns[i].addEventListener('click', function(){
-        var item_id = this.dataset.item
+        // var item_id = this.dataset.item
         var action = this.dataset.action
+
         selectColor = document.querySelector('input[name="radio"]:checked')
         var color = selectColor.dataset.color
-        console.log('item_id', item_id, 'action', action, 'color', color)   
-        addCookieItem(item_id, action)
+        var itemColor_Id = selectColor.dataset.itemcolorid
+
+        var quantity = document.querySelector('span.update-cart').textContent
+
+        console.log('itemColor_Id', itemColor_Id, 'action', action, 'color', color, 'quantity', quantity)   
+        addCookieItem(itemColor_Id, action, color, quantity)
     })
 }
 
-function addCookieItem(item_id, action) {
+function addCookieItem(itemColor_Id, action, color, quantity) {
     console.log(cart)
     if (action == 'add'){
-        if (cart[item_id] == undefined){
-            cart[item_id] = {'quantity': 1}
+        if (cart[itemColor_Id] == undefined){
+            cart[itemColor_Id] = {'quantity': quantity, 'color': color}
         }else{
-            cart[item_id]['quantity'] += 1
+            cart[itemColor_Id]['quantity'] += quantity
         }
         console.log('Item added')
     }
 
     if (action == 'remove'){
-        cart[item_id]['quantity'] -= 1
+        cart[itemColor_Id]['quantity'] -= 1
 
-        if (cart[item_id]['quantity'] <= 0){
-            delete cart[item_id]
+        if (cart[itemColor_Id]['quantity'] <= 0){
+            delete cart[itemColor_Id]
         }
     }
 

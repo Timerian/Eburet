@@ -105,10 +105,10 @@
 
                             <div class="col-md-7 col-lg-6">
 
-                                <form class="needs-validation" novalidate="">
+                                <form id="cart-form" class="needs-validation" novalidate="">
 
                                     <label for="firstName" class="form-label">Имя</label>
-                                    <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                    <input type="text" class="form-control" name="firstName" id="firstName" placeholder="" value=""
                                         required="">
                                     <div class="invalid-feedback">
                                         Пожалуйтса, введите корректное имя.
@@ -117,7 +117,7 @@
                                     <br>
 
                                     <label for="lastName" class="form-label">Фамилия</label>
-                                    <input type="text" class="form-control" id="lastName" placeholder="" value=""
+                                    <input type="text" class="form-control" name="lastName" id="lastName" placeholder="" value=""
                                         required="">
                                     <div class="invalid-feedback">
                                         Пожалуйста, введите корректную фамилию.
@@ -126,7 +126,7 @@
                                     <br>
 
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com">
                                     <div class="invalid-feedback">
                                         Пожалуйста, введите корректный адрес электронной почты.
                                     </div>
@@ -134,7 +134,7 @@
                                     <br>
 
                                     <label for="tel" class="form-label">Номер телефона</label>
-                                    <input type="tel" class="form-control" id="tel">
+                                    <input type="tel" class="form-control" name="tel" id="tel">
                                     <div class="invalid-feedback">
                                         Пожалуйста, введите корректный адрес электронной почты.
                                     </div>
@@ -142,7 +142,7 @@
                                     <br>
 
                                     <label for="address" class="form-label">Адрес доставки</label>
-                                    <input type="text" class="form-control" id="address"
+                                    <input type="text" class="form-control" name="address" id="address"
                                         placeholder="Москва, ул. Большие Каменщики, д. 9, стр. 9, кв. 99" required="">
                                     <div class="invalid-feedback">
                                         Пожалуйста, введите корректный адрес доставки.
@@ -151,7 +151,7 @@
                                     <br>
 
                                     <label for="comment" class="form-label">Комментарий к заказу</label>
-                                    <input type="text" class="form-control" id="comment" required="">
+                                    <input type="text" class="form-control" name="comment" id="comment" required="">
                                     <div class="invalid-feedback">
                                         Please enter your shipping address.
                                     </div>
@@ -159,7 +159,7 @@
                                     <br>
 
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="agreement">
+                                        <input type="checkbox" class="form-check-input" id="agreement" name="agreement">
                                         <label class="form-check-label" for="agreement">Согласие на обработку
                                             персональных
                                             данных, с <a href="">пользовательским соглашением</a> и <a href="">публичной
@@ -184,7 +184,7 @@
                                         </div>
                                     </div>
                                     <hr class="my-4">
-                                    <button class="w-100 btn btn-primary btn-lg" type="submit">Оплатить</button>
+                                    <button id="make-payment" class="w-100 btn btn-primary btn-lg" type="submit">Оплатить</button>
                                 </form>>
 
                             </div>
@@ -198,6 +198,57 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    var form = document.getElementById('cart-form')
+
+    document.getElementById('make-payment').addEventListener('click', function(e){
+        subfitFormData()
+    })
+
+    function subfitFormData(){
+        console.log('Payment button clicked!')
+
+        var orderForm = {
+            'first_name': null,
+            'second_name': null,
+            'email': null,
+            'phone_number': null,
+            'address': null,
+            'comment': null,
+            'pay_method': null,
+            'agreement': null,
+        }
+
+        orderForm.first_name = form.firstName.value
+        orderForm.second_name = form.lastName.value
+        orderForm.email = form.email.value
+        orderForm.phone_number = form.tel.value
+        orderForm.address = form.address.value
+        orderForm.comment = form.comment.value
+        orderForm.pay_method = form.firstName.value
+        orderForm.agreement = form.agreement.value
+
+        var url = '/create_order'
+
+        fetch(url, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body: JSON.stringify({'form': orderForm}),
+        })
+
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success:', data);
+            alert('Transaction complete');
+            window.location.href = "{% url 'store' %}"
+        })
+    }
+
+</script>
 
 
 {% endblock content %}

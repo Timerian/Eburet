@@ -93,7 +93,7 @@
                         height: 36px;
                         border: 1px solid rgb(160, 160, 160);
                         border-radius: 50%;
-                        box-shadow: 0 0 0 0,03;
+                        box-shadow: 0 0 0 0, 03;
                         opacity: 0;
 
                     }
@@ -113,26 +113,99 @@
                 <div class="gallery">
                     <div class="row m-0">
                         <p class="pr-2 p-0 my-2 fw-light">Цвет:</p>
-                            <div class="wrapper">
-                                {% for item in item_colors %}
-                                <div class="option">
-                                    <input class="select-color" type="radio" id="check{{item.id}}" name="radio" data-color="{{item.color}}">
-                                    <label for="check{{item.id}}" style="--item-color: {{item.color}}"></label>
-                                </div>
-                                {% endfor %}
+                        <div class="wrapper">
+                            {% for item in item_colors %}
+                            <div class="option">
+                                <input class="select-color" type="radio" id="check{{item.id}}" name="radio"
+                                    data-color="{{item.color}}">
+                                <label for="check{{item.id}}" style="--item-color: {{item.color}}"></label>
                             </div>
+                            {% endfor %}
+                        </div>
                     </div>
 
                 </div>
                 {% endwith %}
 
                 <div class="d-flex mx-auto my-4">
-                    <div class="m-1 p-3"
-                        style="display: inline-flex; align-items: center; border-radius: 50px 50px; border: 1px solid black; ">
-                        <img src="/media/minus_item.png" width="16px" height="16px" class="mx-1" alt="">
-                        <span class="text-muted mx-3">1</span>
-                        <img src="/media/plus_item.png" width="16px" height="16px" class="mx-1" alt="">
+                    <style>
+                        .stepper {
+                            position: relative;
+                            width: 150px;
+                            height: 56px;
+                            border-radius: 28px;
+                            border: 2px solid grey;
+                        }
+
+                        .stepper .increment {
+                            position: absolute;
+                            top: 3%;
+                            right: 30px;
+                            display: block;
+                            width: 12px;
+                            height: 12px;
+                            font-size: 30px;
+                            cursor: pointer;
+                        }
+
+                        .stepper .decrement {
+                            position: absolute;
+                            top: 3%;
+                            right: 110px;
+                            display: block;
+                            width: 12px;
+                            height: 12px;
+                            font-size: 30px;
+                            cursor: pointer;
+
+                        }
+
+                        #box span {
+                            position: absolute;
+                            display: none;
+                            width: 50%;
+                            height: 100%;
+                            top: 5%;
+                            right: 39px;
+                            text-align: center;
+                            line-height: 45px;
+                            font-size: 20px;
+                        }
+                        #box span[class='number']:nth-child(1){
+                            display: initial;
+                        }
+                    </style>
+                    <div class="stepper m-1 p-3">
+                        <span class="decrement" onclick="prevNum()">-</span>
+                        <span class="increment" onclick="nextNum()">+</span>
+                        <div id="box"></div>                        
                     </div>
+                    <script type="text/javascript">
+                        var numbers = document.getElementById('box')
+                        console.log(numbers)
+
+                        for (i = 1; i < 20; i++) {
+                            var span = document.createElement('span');
+                            span.className += 'number'
+                            span.textContent = i;
+                            numbers.appendChild(span);
+                        }
+
+                        var num = document.getElementsByClassName('number');
+                        var index = 0;
+
+                        function nextNum(){
+                            num[index].style.display = 'none';
+                            index = (index + 1) % num.length;
+                            num[index].style.display = 'initial';
+                        }
+
+                        function prevNum(){
+                            num[index].style.display = 'none';
+                            index = (index - 1 + num.length) % num.length;
+                            num[index].style.display = 'initial';
+                        }
+                    </script>
                     <button class="btn p-0 update-cart" data-item="{{ item.id }}" data-action="add"
                         style="text-decoration: none;">
                         <div class="m-1 p-3"

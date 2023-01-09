@@ -26,7 +26,7 @@ def itemList(request):
 def itemDetail(request, id):
     item = Item.objects.get(id=id)
 
-    context = cookieData(request, id)
+    context = cookieData(request)
     context['item'] = item
     return render(request, 'shop/item.html', context)
 
@@ -55,6 +55,10 @@ def updateItem(request):
 
 
     return JsonResponse('Item added', safe=False)
+
+def creatingOrder(request):
+    data = json.loads(request.body)
+    return JsonResponse('Payment complete...')
 
 def about(request):
     context = {}

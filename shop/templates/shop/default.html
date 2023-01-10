@@ -155,6 +155,25 @@
 		$(window).scroll(function () {
 			$('nav').toggleClass('scrolled', $(this).scrollTop() > 200);
 		})
+
+		$('.cart').click(function(){
+			var update_context_url = '/update_context/';
+
+			document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/";
+			
+			$('#put-html').html('')
+
+			$(document).ready(function(){
+				$.ajax({
+					url: update_context_url,
+					data: cart,
+					dataType: 'html',
+					success: function(data){
+						$('#put-html').html(data);
+					}
+				})
+			})
+		})
 	</script>
 	<script type="text/javascript" src="{% static 'js/cart.js' %}" charset="utf-8"></script>
 </body>

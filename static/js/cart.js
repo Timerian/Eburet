@@ -4,11 +4,10 @@ for (var i = 0; i < updateBtns.length; i++){
     updateBtns[i].addEventListener('click', function(){
         // var item_id = this.dataset.item
         var action = this.dataset.action
-
         selectColor = document.querySelector('input[name="radio"]:checked')
         var color = selectColor.dataset.color
         var itemColor_Id = selectColor.dataset.itemcolorid
-
+        console.log('here')
         var quantity = document.querySelector('span.update-cart').textContent
 
         console.log('itemColor_Id', itemColor_Id, 'action', action, 'color', color, 'quantity', quantity)   

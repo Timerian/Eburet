@@ -1,0 +1,47 @@
+{% load static %}
+
+
+<h4 class="d-flex justify-content-between align-items-center mb-3">
+    <span class="" style="color: rgb(255, 130, 151);">Your cart</span>
+    <span class="badge rounded-pill" style="background-color: rgb(255, 130, 151);">{{ order.order_item_quantity }}</span>
+</h4>
+
+<ul class="list-group mb-3">
+    {% for item_info in items %}
+    <li class="list-group-item d-flex lh-sm align-items-center" style="justify-content: center;">
+        {% with item_info.item.imageURL as imageURL %}
+        <!-- <div class="d-flex" style="flex-direction: row; align-items: center;"> -->
+        <img src="{% get_media_prefix %}/{{ imageURL }}" alt="" class="cart-img" width="60px" height="60px"
+            style="object-fit: cover; margin: 5px;">
+        {% endwith %}
+
+        <div class="col mx-2">
+            <h6 class="my-0">{{ item_info.item.name }}</h6>
+            <small class="text-muted"> Цвет: {{ item_info.item.color }}</small>
+            <br>
+            <small class="text-muted">{{ item_info.item.vendor }}</small>
+        </div>
+        <!-- </div> -->
+        <img src="/media/minus.png" alt="" width="16px" height="16px" class="mx-1">
+        <span class="text-muted mx-1">{{ item_info.quantity }}</span>
+        <img src="/media/plus.png" alt="" width="16px" height="16px" class="mx-1">
+        <!-- <div class="d-flex col align-item-center justify-content-center" style="flex-shrink: 0;"> -->
+        <!-- </div> -->
+
+        <span class="text-muted mx-3">{{ item_info.total_price }} р.</span>
+
+        <img src="/media/cancel.png" alt="" width="16px" height="16px" class="mx-2">
+        {% endfor %}
+    </li>
+    <li class="list-group-item d-flex justify-content-between">
+        <span>Сумма: </span>
+        <strong>{{ order.order_total_price }} р.</strong>
+    </li>
+</ul>
+
+<form class="card p-2">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Promo code">
+        <button type="submit" class="btn btn-secondary">Redeem</button>
+    </div>
+</form>

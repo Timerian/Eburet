@@ -10,20 +10,20 @@ def cookieCart(request):
     cart_items = []
     order = {'order_total_price': 0, 'order_item_quantity': 0}
 
-    for item_id in cart:
-        color_code = cart[item_id]['color']
-        quantity = cart[item_id]['quantity']
+    for ItemColor_id in cart:
+        color_code = cart[ItemColor_id]['color']
+        quantity = cart[ItemColor_id]['quantity']
         color = Color.objects.get(color=color_code)
-        item_color = ItemColor.objects.get(item=item_id, color=color)
-        cart_item = Item.objects.get(id=item_id)
+        item_color = ItemColor.objects.get(id=ItemColor_id)
+        cart_item = item_color.item
 
-        order_item_price = cart_item.price * quantity
+        order_item_price = cart_item.price * int(quantity)
         order['order_total_price'] += order_item_price
-        order['order_item_quantity'] += quantity
+        order['order_item_quantity'] += int(quantity)
 
         cart_item_info = {
             'item':{
-                'id': cart_item.id,
+                'id': ItemColor_id,
                 'name': cart_item.name,
                 'vendor': cart_item.vendor_name,
                 'color': color.name,

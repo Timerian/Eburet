@@ -9,7 +9,6 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('help/', views.help, name='help'),
     path('contacts/', views.contacts, name='contacts'), 
-
-    path('update_item/', views.updateItem, name='update_item'),
-    path('create_order/', views.creatingOrder, name = 'create_order') 
+    path('create_order/', views.creatingOrder, name = 'create_order'),
+    path('update_context/', views.updateContext, name='update_context')
 ]

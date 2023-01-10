@@ -18,7 +18,7 @@ def main(request):
 def itemList(request):
     items = Item.objects.all()
 
-    context = cookieData(request, id)
+    context = cookieData(request)
     context['items'] = items
     return render(request, "shop/store.html", context)
 
@@ -71,3 +71,9 @@ def contacts(request):
 def help(request):
     context = {}
     return render(request, "shop/help.html", context)
+
+def updateContext(request):
+    print(json.loads(request.COOKIES['cart']))
+    context = cookieData(request)
+    print(context)
+    return render(request, 'shop/cart.html', context)

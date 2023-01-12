@@ -1,5 +1,22 @@
 var updateBtns = document.getElementsByClassName('update-cart')
 
+function getItemQuantity(cart){
+    var Quantity = 0
+    if (cart != {}){
+        for (const key in cart){
+            Quantity += parseInt(cart[key]['quantity']);
+        }
+    }
+    console.log('It works')
+    return Quantity
+}
+
+function setItemQuantity(cart){
+    var itemQuantity = getItemQuantity(cart)
+    console.log('And it works')
+    document.querySelector('span.cart-label').textContent = itemQuantity
+}
+
 for (var i = 0; i < updateBtns.length; i++){
     updateBtns[i].addEventListener('click', function(){
         // var item_id = this.dataset.item
@@ -7,11 +24,12 @@ for (var i = 0; i < updateBtns.length; i++){
         selectColor = document.querySelector('input[name="radio"]:checked')
         var color = selectColor.dataset.color
         var itemColor_Id = selectColor.dataset.itemcolorid
-        console.log('here')
-        var quantity = document.querySelector('span.update-cart').textContent
+        var quantity = parseInt(document.querySelector('span.update-cart').textContent)
 
         console.log('itemColor_Id', itemColor_Id, 'action', action, 'color', color, 'quantity', quantity)   
         addCookieItem(itemColor_Id, action, color, quantity)
+
+        setItemQuantity(cart)
     })
 }
 

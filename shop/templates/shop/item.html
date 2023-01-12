@@ -273,115 +273,155 @@
         </div>
     </div>
 
-    <div class="">
-        <button type="button" class="btn btn-lg cart" data-bs-toggle="modal" data-bs-target="#cart">КОРЗИНА</button>
+    <style>
+        .cart-layer {
+            display: block;
+            top: initial;
+            position: fixed;
+            z-index: 99999;
+            bottom: 110px;
+            right: 50px;           
+        }
 
-        <div class="modal fade" id="cart" tabindex="-1">
+        .cart-btn{
+            border: 1px solid black 0;
+            border-radius: 50%;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            width: 90px;
+            height: 90px;
+            background-color: rgba(250, 250, 250, 0.8);
+        }
 
-            <div class="modal-dialog" style="max-width: 1000px;">
-                <div class="modal-content p-3">
-                    <div class="modal-header">
-                        <h5 class="modal-title">КОРЗИНА</h5>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
+        .cart-label{
+            position: absolute;
+            display: block;
+            background-color: rgb(255, 130, 151); 
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            text-align: center;
+            color: #ffffff;
+            bottom: 0px;
+            right: 0px;
+        }
+    </style>
 
-                            <div class="col-md-5 col-lg-4 order-md-last w-50" id="put-html">
+    <div class="cart-layer">
+        <div class="">
+            <button type="button" class="btn btn-lg cart cart-btn" data-bs-toggle="modal" data-bs-target="#cart" id="cart-btn">
+                <img src="/media/packaging.png" alt="" style="opacity: 0.5; width: 50px; height: 50px;">
+            </button>
 
-                            </div>
-
-                            <div class="col-md-7 col-lg-6">
-
-                                <form id="cart-form" class="needs-validation" novalidate="">
-        
-                                    <label for="firstName" class="form-label">Имя</label>
-                                    <input type="text" class="form-control" name="firstName" id="firstName" placeholder="" value=""
-                                        required="">
-                                    <div class="invalid-feedback">
-                                        Пожалуйтса, введите корректное имя.
-                                    </div>
-        
-                                    <br>
-        
-                                    <label for="lastName" class="form-label">Фамилия</label>
-                                    <input type="text" class="form-control" name="lastName" id="lastName" placeholder="" value=""
-                                        required="">
-                                    <div class="invalid-feedback">
-                                        Пожалуйста, введите корректную фамилию.
-                                    </div>
-        
-                                    <br>
-        
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com">
-                                    <div class="invalid-feedback">
-                                        Пожалуйста, введите корректный адрес электронной почты.
-                                    </div>
-        
-                                    <br>
-        
-                                    <label for="tel" class="form-label">Номер телефона</label>
-                                    <input type="tel" class="form-control" name="tel" id="tel">
-                                    <div class="invalid-feedback">
-                                        Пожалуйста, введите корректный адрес электронной почты.
-                                    </div>
-        
-                                    <br>
-        
-                                    <label for="address" class="form-label">Адрес доставки</label>
-                                    <input type="text" class="form-control" name="address" id="address"
-                                        placeholder="Москва, ул. Большие Каменщики, д. 9, стр. 9, кв. 99" required="">
-                                    <div class="invalid-feedback">
-                                        Пожалуйста, введите корректный адрес доставки.
-                                    </div>
-        
-                                    <br>
-        
-                                    <label for="comment" class="form-label">Комментарий к заказу</label>
-                                    <input type="text" class="form-control" name="comment" id="comment" required="">
-                                    <div class="invalid-feedback">
-                                        Please enter your shipping address.
-                                    </div>
-        
-                                    <br>
-        
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="agreement" name="agreement">
-                                        <label class="form-check-label" for="agreement">Согласие на обработку
-                                            персональных
-                                            данных, с <a href="">пользовательским соглашением</a> и <a href="">публичной
-                                                офертой</a>.</label>
-                                    </div>
-        
-                                    <br>
-        
-                                    <h4 class="mb-3">Тип оплаты</h4>
-        
-                                    <div class="my-3">
-                                        <div class="form-check">
-                                            <input id="credit" name="paymentMethod" type="radio"
-                                                class="form-check-input" checked="" required="">
-                                            <label class="form-check-label" for="credit">Оплата картой</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input id="debit" name="paymentMethod" type="radio" class="form-check-input"
-                                                required="">
-                                            <label class="form-check-label" for="debit">Безналичная оплата для юр.
-                                                лиц</label>
-                                        </div>
-                                    </div>
-                                    <hr class="my-4">
-                                    <button id="make-payment" class="w-100 btn btn-primary btn-lg" type="submit">Оплатить</button>
-                                </form>>
-        
-                            </div>
+            
+            <span class="cart-label" style=""></span>
+    
+            <div class="modal fade" id="cart" tabindex="-1">
+    
+                <div class="modal-dialog" style="max-width: 1000px;">
+                    <div class="modal-content p-3">
+                        <div class="modal-header">
+                            <h5 class="modal-title">КОРЗИНА</h5>
                         </div>
-        
-        
+                        <div class="modal-body">
+                            <div class="row">
+    
+                                <div class="col-md-5 col-lg-4 order-md-last w-50" id="put-html">
+    
+                                </div>
+    
+                                <div class="col-md-7 col-lg-6">
+    
+                                    <form id="cart-form" class="needs-validation" novalidate="">
+            
+                                        <label for="firstName" class="form-label">Имя</label>
+                                        <input type="text" class="form-control" name="firstName" id="firstName" placeholder="" value=""
+                                            required="">
+                                        <div class="invalid-feedback">
+                                            Пожалуйтса, введите корректное имя.
+                                        </div>
+            
+                                        <br>
+            
+                                        <label for="lastName" class="form-label">Фамилия</label>
+                                        <input type="text" class="form-control" name="lastName" id="lastName" placeholder="" value=""
+                                            required="">
+                                        <div class="invalid-feedback">
+                                            Пожалуйста, введите корректную фамилию.
+                                        </div>
+            
+                                        <br>
+            
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com">
+                                        <div class="invalid-feedback">
+                                            Пожалуйста, введите корректный адрес электронной почты.
+                                        </div>
+            
+                                        <br>
+            
+                                        <label for="tel" class="form-label">Номер телефона</label>
+                                        <input type="tel" class="form-control" name="tel" id="tel">
+                                        <div class="invalid-feedback">
+                                            Пожалуйста, введите корректный адрес электронной почты.
+                                        </div>
+            
+                                        <br>
+            
+                                        <label for="address" class="form-label">Адрес доставки</label>
+                                        <input type="text" class="form-control" name="address" id="address"
+                                            placeholder="Москва, ул. Большие Каменщики, д. 9, стр. 9, кв. 99" required="">
+                                        <div class="invalid-feedback">
+                                            Пожалуйста, введите корректный адрес доставки.
+                                        </div>
+            
+                                        <br>
+            
+                                        <label for="comment" class="form-label">Комментарий к заказу</label>
+                                        <input type="text" class="form-control" name="comment" id="comment" required="">
+                                        <div class="invalid-feedback">
+                                            Please enter your shipping address.
+                                        </div>
+            
+                                        <br>
+            
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="agreement" name="agreement">
+                                            <label class="form-check-label" for="agreement">Согласие на обработку
+                                                персональных
+                                                данных, с <a href="">пользовательским соглашением</a> и <a href="">публичной
+                                                    офертой</a>.</label>
+                                        </div>
+            
+                                        <br>
+            
+                                        <h4 class="mb-3">Тип оплаты</h4>
+            
+                                        <div class="my-3">
+                                            <div class="form-check">
+                                                <input id="credit" name="paymentMethod" type="radio"
+                                                    class="form-check-input" checked="" required="">
+                                                <label class="form-check-label" for="credit">Оплата картой</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input id="debit" name="paymentMethod" type="radio" class="form-check-input"
+                                                    required="">
+                                                <label class="form-check-label" for="debit">Безналичная оплата для юр.
+                                                    лиц</label>
+                                            </div>
+                                        </div>
+                                        <hr class="my-4">
+                                        <button id="make-payment" class="w-100 btn btn-primary btn-lg" type="submit">Оплатить</button>
+                                    </form>>
+            
+                                </div>
+                            </div>
+            
+            
+                        </div>
                     </div>
                 </div>
+            
             </div>
-        
         </div>
 
     </div>

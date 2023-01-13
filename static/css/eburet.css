@@ -141,3 +141,154 @@
     cursor: pointer;
     margin: 2px;
 }
+
+.stepper {
+    position: relative;
+    width: 150px;
+    height: 56px;
+    border-radius: 28px;
+    border: 2px solid grey;
+}
+
+.stepper .increment {
+    position: absolute;
+    top: 3%;
+    right: 30px;
+    display: block;
+    width: 12px;
+    height: 12px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.stepper .decrement {
+    position: absolute;
+    top: 3%;
+    right: 110px;
+    display: block;
+    width: 12px;
+    height: 12px;
+    font-size: 30px;
+    cursor: pointer;
+
+}
+
+#box span {
+    position: absolute;
+    display: none;
+    width: 50%;
+    height: 100%;
+    top: 5%;
+    right: 39px;
+    text-align: center;
+    line-height: 45px;
+    font-size: 20px;
+}
+
+#box span[class='number']:nth-child(1) {
+    display: initial;
+}
+
+.unselectable {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.wrapper {
+    width: 100%;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+}
+
+.option {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.option input {
+    display: none;
+}
+
+.option label {
+    font-family: 'Josefin Slab', sans-serif;
+    font-size: 60px;
+    cursor: pointer;
+}
+
+.option label::after {
+    content: "";
+    position: absolute;
+    right: 5px;
+    top: 20px;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--item-color);
+}
+
+.option label::before {
+    content: "";
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgb(160, 160, 160);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0, 03;
+    opacity: 0;
+
+}
+
+.option input:hover~label::before {
+    border-color: black;
+    transition: 300ms;
+}
+
+.option input:checked~label::before {
+    opacity: 1;
+    transition: 300ms;
+}
+
+.cart-layer {
+    display: block;
+    top: initial;
+    position: fixed;
+    z-index: 99999;
+    bottom: 110px;
+    right: 50px;
+}
+
+.cart-btn {
+    border: 1px solid black 0;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    width: 90px;
+    height: 90px;
+    background-color: rgba(250, 250, 250, 0.8);
+}
+
+.cart-label {
+    position: absolute;
+    display: block;
+    background-color: rgb(255, 130, 151);
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    color: #ffffff;
+    bottom: 0px;
+    right: 0px;
+}

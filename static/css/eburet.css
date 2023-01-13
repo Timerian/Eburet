@@ -41,13 +41,29 @@
     box-shadow: 0 0 2px 2px rgb(255, 130, 151) !important;
 }
 
+.t-item {
+    display: table;
+}
+
 .gallery {
     max-width: 600px;
-    display: flex;
+    width: 100%;
+    display: block;
+    float: left;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     flex-direction: row;
     -webkit-box-pack: justify;
+}
+
+.t-images {
+    display: flex;
+    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-box-pack: justify;
+    max-width: 670px;
+    width: 100%;
 }
 
 .side-view {
@@ -82,6 +98,18 @@
     height: 670px;
     -webkit-box-ordinal-group: 3;
     order: 2;
+}
+
+.capture {
+    max-width: 600px;
+    width: 100%;
+    display: block;
+    float: left;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    padding-left: 80px;
 }
 
 .hr-1 {

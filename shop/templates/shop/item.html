@@ -3,24 +3,26 @@
 {% load static %}
 
 {% block content %}
-<div class="album py-5 m-auto" style="margin-top: 2%;">
-    <div class="container-lg" style="margin-left: 15%;">
-        <div class="row">
-            <div class="gallery col">
-                <div class="side-view">
-                    {% for imageitem in item.imageitem_set.all %}
-                    <img src="{% get_media_prefix %}/{{ imageitem.image.name }}" alt="" onclick="change(this.src)"
-                        id="side" class="side">
-                    {% endfor %}
-                </div>
+<div class="album m-auto" style="padding-top: 120px;">
+    <div class="container-lg" style="margin-left: auto; padding: 0px 20px;">
+        <div class="t-item">
+            <div class="gallery">
+                <div class="t-images">
+                    <div class="side-view">
+                        {% for imageitem in item.imageitem_set.all %}
+                        <img src="{% get_media_prefix %}/{{ imageitem.image.name }}" alt="" onclick="change(this.src)"
+                            id="side" class="side">
+                        {% endfor %}
+                    </div>
 
-                <div class="main-view d-flex col">
-                    <div class="container m-auto">
-                        {% with item.imageitem_set.all|first as imageitem %}
-                        {% with imageitem.image.name as imagename %}
-                        <img src="{% get_media_prefix %}/{{ imagename }}" alt="" id="main" style="width: 100%;">
-                        {% endwith %}
-                        {% endwith %}
+                    <div class="main-view d-flex col">
+                        <div class="container m-auto">
+                            {% with item.imageitem_set.all|first as imageitem %}
+                            {% with imageitem.image.name as imagename %}
+                            <img src="{% get_media_prefix %}/{{ imagename }}" alt="" id="main" style="width: 100%;">
+                            {% endwith %}
+                            {% endwith %}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -110,7 +112,7 @@
                 </style>
 
                 {% with item.colors.all as item_colors %}
-                <div class="gallery">
+                <div class="">
                     <div class="row m-0">
                         <p class="pr-2 p-0 my-2 fw-light">Цвет:</p>
                         <div class="wrapper">
@@ -126,7 +128,6 @@
 
                 </div>
                 {% endwith %}
-
                 <div class="d-flex mx-auto my-4">
                     <style>
                         .stepper {
@@ -171,14 +172,22 @@
                             line-height: 45px;
                             font-size: 20px;
                         }
-                        #box span[class='number']:nth-child(1){
+
+                        #box span[class='number']:nth-child(1) {
                             display: initial;
+                        }
+
+                        .unselectable {
+                            -moz-user-select: none;
+                            -khtml-user-select: none;
+                            -webkit-user-select: none;
+                            user-select: none;
                         }
                     </style>
                     <div class="stepper m-1 p-3">
-                        <span class="decrement" onclick="prevNum()">-</span>
-                        <span class="increment" onclick="nextNum()">+</span>
-                        <div id="box"></div>                        
+                        <span class="decrement unselectable" onclick="prevNum()">-</span>
+                        <span class="increment unselectable" onclick="nextNum()">+</span>
+                        <div id="box" class="unselectable"></div>
                     </div>
                     <script type="text/javascript">
                         var numbers = document.getElementById('box')
@@ -186,9 +195,9 @@
                         for (i = 1; i < 20; i++) {
                             var span = document.createElement('span');
                             span.className += 'number'
-                            if (i == 1){
+                            if (i == 1) {
                                 span.className += ' update-cart';
-                                span.style.display = 'initial'; 
+                                span.style.display = 'initial';
                             }
                             span.textContent = i;
                             numbers.appendChild(span);
@@ -197,7 +206,7 @@
                         var num = document.getElementsByClassName('number');
                         var index = 0;
 
-                        function nextNum(){
+                        function nextNum() {
                             num[index].style.display = 'none';
                             num[index].className = 'number';
                             index = (index + 1) % num.length;
@@ -205,7 +214,7 @@
                             num[index].className += ' update-cart'
                         }
 
-                        function prevNum(){
+                        function prevNum() {
                             num[index].style.display = 'none';
                             num[index].className = 'number';
                             index = (index - 1 + num.length) % num.length;
@@ -280,10 +289,10 @@
             position: fixed;
             z-index: 99999;
             bottom: 110px;
-            right: 50px;           
+            right: 50px;
         }
 
-        .cart-btn{
+        .cart-btn {
             border: 1px solid black 0;
             border-radius: 50%;
             box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
@@ -292,10 +301,10 @@
             background-color: rgba(250, 250, 250, 0.8);
         }
 
-        .cart-label{
+        .cart-label {
             position: absolute;
             display: block;
-            background-color: rgb(255, 130, 151); 
+            background-color: rgb(255, 130, 151);
             border-radius: 50%;
             width: 25px;
             height: 25px;
@@ -308,15 +317,16 @@
 
     <div class="cart-layer">
         <div class="">
-            <button type="button" class="btn btn-lg cart cart-btn" data-bs-toggle="modal" data-bs-target="#cart" id="cart-btn">
+            <button type="button" class="btn btn-lg cart cart-btn" data-bs-toggle="modal" data-bs-target="#cart"
+                id="cart-btn">
                 <img src="/media/packaging.png" alt="" style="opacity: 0.5; width: 50px; height: 50px;">
             </button>
 
-            
+
             <span class="cart-label" style=""></span>
-    
+
             <div class="modal fade" id="cart" tabindex="-1">
-    
+
                 <div class="modal-dialog" style="max-width: 1000px;">
                     <div class="modal-content p-3">
                         <div class="modal-header">
@@ -324,78 +334,82 @@
                         </div>
                         <div class="modal-body">
                             <div class="row">
-    
+
                                 <div class="col-md-5 col-lg-4 order-md-last w-50" id="put-html">
-    
+
                                 </div>
-    
+
                                 <div class="col-md-7 col-lg-6">
-    
+
                                     <form id="cart-form" class="needs-validation" novalidate="">
-            
+
                                         <label for="firstName" class="form-label">Имя</label>
-                                        <input type="text" class="form-control" name="firstName" id="firstName" placeholder="" value=""
-                                            required="">
+                                        <input type="text" class="form-control" name="firstName" id="firstName"
+                                            placeholder="" value="" required="">
                                         <div class="invalid-feedback">
                                             Пожалуйтса, введите корректное имя.
                                         </div>
-            
+
                                         <br>
-            
+
                                         <label for="lastName" class="form-label">Фамилия</label>
-                                        <input type="text" class="form-control" name="lastName" id="lastName" placeholder="" value=""
-                                            required="">
+                                        <input type="text" class="form-control" name="lastName" id="lastName"
+                                            placeholder="" value="" required="">
                                         <div class="invalid-feedback">
                                             Пожалуйста, введите корректную фамилию.
                                         </div>
-            
+
                                         <br>
-            
+
                                         <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com">
+                                        <input type="email" class="form-control" name="email" id="email"
+                                            placeholder="you@example.com">
                                         <div class="invalid-feedback">
                                             Пожалуйста, введите корректный адрес электронной почты.
                                         </div>
-            
+
                                         <br>
-            
+
                                         <label for="tel" class="form-label">Номер телефона</label>
                                         <input type="tel" class="form-control" name="tel" id="tel">
                                         <div class="invalid-feedback">
                                             Пожалуйста, введите корректный адрес электронной почты.
                                         </div>
-            
+
                                         <br>
-            
+
                                         <label for="address" class="form-label">Адрес доставки</label>
                                         <input type="text" class="form-control" name="address" id="address"
-                                            placeholder="Москва, ул. Большие Каменщики, д. 9, стр. 9, кв. 99" required="">
+                                            placeholder="Москва, ул. Большие Каменщики, д. 9, стр. 9, кв. 99"
+                                            required="">
                                         <div class="invalid-feedback">
                                             Пожалуйста, введите корректный адрес доставки.
                                         </div>
-            
+
                                         <br>
-            
+
                                         <label for="comment" class="form-label">Комментарий к заказу</label>
                                         <input type="text" class="form-control" name="comment" id="comment" required="">
                                         <div class="invalid-feedback">
                                             Please enter your shipping address.
                                         </div>
-            
+
                                         <br>
-            
+
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="agreement" name="agreement">
+                                            <input type="checkbox" class="form-check-input" id="agreement"
+                                                name="agreement">
                                             <label class="form-check-label" for="agreement">Согласие на обработку
                                                 персональных
-                                                данных, с <a href="">пользовательским соглашением</a> и <a href="">публичной
+                                                данных, с <a href="">пользовательским соглашением</a> и <a
+                                                    href="">публичной
                                                     офертой</a>.</label>
                                         </div>
-            
+
                                         <br>
-            
+
                                         <h4 class="mb-3">Тип оплаты</h4>
-            
+
                                         <div class="my-3">
                                             <div class="form-check">
                                                 <input id="credit" name="paymentMethod" type="radio"
@@ -403,24 +417,25 @@
                                                 <label class="form-check-label" for="credit">Оплата картой</label>
                                             </div>
                                             <div class="form-check">
-                                                <input id="debit" name="paymentMethod" type="radio" class="form-check-input"
-                                                    required="">
+                                                <input id="debit" name="paymentMethod" type="radio"
+                                                    class="form-check-input" required="">
                                                 <label class="form-check-label" for="debit">Безналичная оплата для юр.
                                                     лиц</label>
                                             </div>
                                         </div>
                                         <hr class="my-4">
-                                        <button id="make-payment" class="w-100 btn btn-primary btn-lg" type="submit">Оплатить</button>
+                                        <button id="make-payment" class="w-100 btn btn-primary btn-lg"
+                                            type="submit">Оплатить</button>
                                     </form>>
-            
+
                                 </div>
                             </div>
-            
-            
+
+
                         </div>
                     </div>
                 </div>
-            
+
             </div>
         </div>
 

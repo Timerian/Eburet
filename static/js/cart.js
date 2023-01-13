@@ -7,13 +7,11 @@ function getItemQuantity(cart){
             Quantity += parseInt(cart[key]['quantity']);
         }
     }
-    console.log('It works')
     return Quantity
 }
 
 function setItemQuantity(cart){
     var itemQuantity = getItemQuantity(cart)
-    console.log('And it works')
     document.querySelector('span.cart-label').textContent = itemQuantity
 }
 

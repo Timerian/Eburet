@@ -22,15 +22,17 @@
             <small class="text-muted">{{ item_info.item.vendor }}</small>
         </div>
         <!-- </div> -->
-        <img src="/media/minus.png" alt="" width="16px" height="16px" class="mx-1">
+        <button type="button" class="update-cart" data-action="remove">
+            <img src="/media/minus.png" alt="" width="16px" height="16px" class="mx-1" >
+        </button>
         <span class="text-muted mx-1">{{ item_info.quantity }}</span>
-        <img src="/media/plus.png" alt="" width="16px" height="16px" class="mx-1">
+        <img class="update-cart" src="/media/plus.png" alt="" width="16px" height="16px" class="mx-1" data-action="add">
         <!-- <div class="d-flex col align-item-center justify-content-center" style="flex-shrink: 0;"> -->
         <!-- </div> -->
 
         <span class="text-muted mx-3">{{ item_info.total_price }} р.</span>
 
-        <img src="/media/cancel.png" alt="" width="16px" height="16px" class="mx-2">
+        <img class="update-cart" src="/media/cancel.png" alt="" width="16px" height="16px" class="mx-2" data-action="delete">
         {% endfor %}
     </li>
     <li class="list-group-item d-flex justify-content-between">
@@ -45,3 +47,7 @@
         <button type="submit" class="btn btn-secondary">Redeem</button>
     </div>
 </form>
+
+<script>
+    
+</script>

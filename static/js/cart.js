@@ -1,5 +1,7 @@
-var updateBtns = document.getElementsByClassName('update-cart')
+// This script manage the logic of cart. 
 
+
+// Getting total quantity of items in the cart
 function getItemQuantity(cart){
     var Quantity = 0
     if (cart != {}){
@@ -10,27 +12,13 @@ function getItemQuantity(cart){
     return Quantity
 }
 
+// Setting value for the label indicating total item quantity in the cart (modal window)
 function setItemQuantity(cart){
     var itemQuantity = getItemQuantity(cart)
     document.querySelector('span.cart-label').textContent = itemQuantity
 }
 
-for (var i = 0; i < updateBtns.length; i++){
-    updateBtns[i].addEventListener('click', function(){
-        // var item_id = this.dataset.item
-        var action = this.dataset.action
-        selectColor = document.querySelector('input[name="radio"]:checked')
-        var color = selectColor.dataset.color
-        var itemColor_Id = selectColor.dataset.itemcolorid
-        var quantity = parseInt(document.querySelector('span.update-cart').textContent)
-
-        console.log('itemColor_Id', itemColor_Id, 'action', action, 'color', color, 'quantity', quantity)   
-        addCookieItem(itemColor_Id, action, color, quantity)
-
-        setItemQuantity(cart)
-    })
-}
-
+// Updating cookie which contain cart information
 function addCookieItem(itemColor_Id, action, color, quantity) {
     console.log(cart)
     if (action == 'add'){
@@ -53,28 +41,26 @@ function addCookieItem(itemColor_Id, action, color, quantity) {
     document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
 }
 
-// function updateUserOrder(item_id, action, color){
-//     console.log('Sending data...')
+// Function for collecting information of items throught form on the item page.
+// Also this function refresh cookie and cart label value.
+function updateBtnsListener(){
+    var updateBtns = document.getElementsByClassName('update-cart')
 
-//     var url = "/update_item/"
-
-//     console.log(csrftoken)
-
-//     fetch(url, {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//             "Accept": "application/json",
-//             "X-CSRFToken": csrftoken
-//         },
-//         body: JSON.stringify({"item_id": item_id, "action": action, "color": color})
-//     })
+    for (var i = 0; i < updateBtns.length; i++){
+        updateBtns[i].addEventListener('click', function(){
+            // var item_id = this.dataset.item
+            var action = this.dataset.action
+            selectColor = document.querySelector('input[name="radio"]:checked')
+            var color = selectColor.dataset.color
+            var itemColor_Id = selectColor.dataset.itemcolorid
+            var quantity = parseInt(document.querySelector('span.update-cart').textContent)
     
-//     .then((response) => {
-//         return response.json()
-//     })
+            console.log('itemColor_Id', itemColor_Id, 'action', action, 'color', color, 'quantity', quantity)   
+            addCookieItem(itemColor_Id, action, color, quantity)
+    
+            setItemQuantity(cart)
+        })
+    }
+}
 
-//     .then((data) => {
-//         console.log('data', data)
-//     })
-// }
+updateBtnsListener()

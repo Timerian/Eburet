@@ -43,8 +43,65 @@
                     ОГРН 1197847171433
                 </p>
             </div>
-            <div class="col-md-2">
-                <p class="fw-lighter" style="font-size:75px;">TODO: FORM</p>
+
+            <div class="col">
+                <div class="">
+                    <form id="cart-form" class="needs-validation" novalidate="">
+                        <label for="firstName" class="form-label">Имя</label>
+                        <input type="text" class="form-control" name="firstName" id="firstName"
+                            placeholder="" value="" required="">
+                        <div class="invalid-feedback">
+                            Пожалуйтса, введите корректное имя.
+                        </div>
+
+                        <br>
+
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" id="email"
+                            placeholder="you@example.com">
+                        <div class="invalid-feedback">
+                            Пожалуйста, введите корректный адрес электронной почты.
+                        </div>
+
+                        <br>
+
+                        <label for="tel" class="form-label">Номер телефона</label>
+                        <input type="tel" class="form-control" name="tel" id="tel">
+                        <div class="invalid-feedback">
+                            Пожалуйста, введите корректный адрес электронной почты.
+                        </div>
+
+                        <br>
+
+                        <label for="connection_method" class="form-label">Удобный способ связи:</label>
+                        <select class="form-select" aria-label="Default select example" name="connection_method" id="connection_method">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+
+                        <br>
+
+                        <label for="comment" class="form-label">Сообщение</label>
+                        <input type="text" class="form-control" name="comment" id="comment" required="">
+                        <div class="invalid-feedback">
+                            Please enter your shipping address.
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="agreement"
+                                name="agreement">
+                            <label class="form-check-label" for="agreement">Согласие на обработку
+                                персональных
+                                данных, с <a href="">пользовательским соглашением</a> и <a
+                                    href="">публичной
+                                    офертой</a>.</label>
+                        </div>
+
+                        <button type="submit">Отправить</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

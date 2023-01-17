@@ -126,6 +126,7 @@
 
 .pr-1 {
     font-size: 18px;
+    /* font-weight: 300; */
     margin-bottom: 0;
 }
 
@@ -291,4 +292,39 @@
     color: #ffffff;
     bottom: 0px;
     right: 0px;
+}
+
+form input.form-control{
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px 20px;
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 0;
+    padding-left: 20px;
+}
+
+form label.form-label{
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+
+form select.form-select{
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px 20px;
+    padding-left: 20px;
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 0;
+}
+
+form button{
+    margin: 5px;
+    padding: 2px;
+    width: 150px;
+    height: 40px;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 20px 20px;
+    background-color: rgb(255, 130, 151);
+    color: #ffffff;
 }

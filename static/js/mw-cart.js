@@ -17,13 +17,6 @@ function updateCartItemInfo(itemColor_Id, action, color, quantity, cart, price){
     document.querySelector(priceId).textContent = (cart[itemColor_Id]['quantity'] * price) + 'р.'
 }
 
-function deleteItem(itemColor_Id, action, color, quantity, cart){
-    updateCartItemInfo(itemColor_Id, action, color, quantity, cart)
-    var list_item_id = '#mw-list-item' + itemColor_Id
-    
-    document.querySelector(list_item_id).remove()
-}
-
 function cartBtnsListener(){
     var cartBtns = document.getElementsByClassName('mw-cart-btn')
 

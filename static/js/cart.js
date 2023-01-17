@@ -20,14 +20,13 @@ function setItemQuantity(cart){
 
 // Updating cookie which contain cart information
 function addCookieItem(itemColor_Id, action, color, quantity, price) {
-    console.log(cart)
+    var status = 'exist'
     if (action == 'add'){
         if (cart[itemColor_Id] == undefined){
             cart[itemColor_Id] = {'quantity': quantity, 'color': color, 'price': price}
         }else{
             cart[itemColor_Id]['quantity'] += quantity
         }
-        console.log('Item added')
     }
 
     if (action == 'remove'){
@@ -35,14 +34,18 @@ function addCookieItem(itemColor_Id, action, color, quantity, price) {
 
         if (cart[itemColor_Id]['quantity'] <= 0){
             delete cart[itemColor_Id]
+            status = 'deleted'
         }
     }
 
     if (action == 'delete'){
         delete cart[itemColor_Id]
+        status = 'deleted'
     }
 
     document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+
+    return status
 }
 
 // Function for collecting information of items throught form on the item page.
@@ -67,6 +70,8 @@ function updateBtnsListener(){
             console.log('update-cart')
     
             setItemQuantity(cart)
+
+
             }
         )
     }

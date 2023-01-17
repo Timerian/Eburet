@@ -98,7 +98,8 @@
                             num[index].className += ' update-cart'
                         }
                     </script>
-                    <button class="btn p-0 update-cart" data-item="{{ item.id }}" data-action="add" data-price="{{ item.price }}"
+                    <button class="btn p-0 update-cart cart" data-item="{{ item.id }}" data-action="add"
+                        data-price="{{ item.price }}" data-bs-toggle="modal" data-bs-target="#cart"
                         style="text-decoration: none;">
                         <div class="m-1 p-3"
                             style="display: inline-flex; align-items: center; background-color: rgb(255, 130, 151); border-radius: 50px 50px;">

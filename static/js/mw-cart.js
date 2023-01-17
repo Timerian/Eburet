@@ -1,13 +1,26 @@
-function updateCartItemInfo(itemColor_Id, action, color, quantity, cart){
-    addCookieItem(itemColor_Id, action, color, quantity)
+function updateCartItemInfo(itemColor_Id, action, color, quantity, cart, price){
+    var status = addCookieItem(itemColor_Id, action, color, quantity)
     setItemQuantity(cart)
     setTotalPrice(cart)
     document.querySelector('span.badge').textContent = getTotalItemQuantity(cart)
+
+    if (status == 'deleted'){
+        var list_item_id = '#mw-list-item' + itemColor_Id
+        document.querySelector(list_item_id).remove()
+        return
+    }
+
+    var btnId = '#quantity' + itemColor_Id
+    document.querySelector(btnId).textContent = cart[itemColor_Id]['quantity']
+
+    var priceId = '#price' + itemColor_Id
+    document.querySelector(priceId).textContent = (cart[itemColor_Id]['quantity'] * price) + 'р.'
 }
 
 function deleteItem(itemColor_Id, action, color, quantity, cart){
     updateCartItemInfo(itemColor_Id, action, color, quantity, cart)
     var list_item_id = '#mw-list-item' + itemColor_Id
+    
     document.querySelector(list_item_id).remove()
 }
 
@@ -20,29 +33,9 @@ function cartBtnsListener(){
             var color = this.dataset.color
             var itemColor_Id = this.dataset.itemcolorid
             var price = cart[itemColor_Id]['price']
+            var quantity = 1
 
-            if (action == 'add') {
-                var quantity = 1
-            } else if (action == 'remove') {
-                var quantity = -1
-                
-                if (cart[itemColor_Id]['quantity'] == 1){
-                    deleteItem(itemColor_Id, action, color, quantity, cart)
-                    return
-                }
-                
-            } else if (action == 'delete') {
-                deleteItem(itemColor_Id, action, color, quantity, cart)
-                return
-            }
-
-            updateCartItemInfo(itemColor_Id, action, color, quantity, cart)
-
-            var btnId = '#quantity' + itemColor_Id
-            document.querySelector(btnId).textContent = cart[itemColor_Id]['quantity']
-
-            var priceId = '#price' + itemColor_Id
-            document.querySelector(priceId).textContent = (cart[itemColor_Id]['quantity'] * price) + 'р.'
+            updateCartItemInfo(itemColor_Id, action, color, quantity, cart, price)
             }
         )
     }

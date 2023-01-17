@@ -27,6 +27,7 @@ def cookieCart(request):
                 'name': cart_item.name,
                 'vendor': cart_item.vendor_name,
                 'color': color.name,
+                'color_code': color_code,
                 'price': cart_item.price,
                 'imageURL': cart_item.imageitem_set.first().image.name
             },

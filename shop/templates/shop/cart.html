@@ -8,9 +8,8 @@
 
 <ul class="list-group mb-3">
     {% for item_info in items %}
-    <li class="list-group-item d-flex lh-sm align-items-center" style="justify-content: center;">
+    <li class="list-group-item d-flex lh-sm align-items-center" style="justify-content: center;" id="mw-list-item{{item_info.item.id}}">
         {% with item_info.item.imageURL as imageURL %}
-        <!-- <div class="d-flex" style="flex-direction: row; align-items: center;"> -->
         <img src="{% get_media_prefix %}/{{ imageURL }}" alt="" class="cart-img" width="60px" height="60px"
             style="object-fit: cover; margin: 5px;">
         {% endwith %}
@@ -21,23 +20,31 @@
             <br>
             <small class="text-muted">{{ item_info.item.vendor }}</small>
         </div>
-        <!-- </div> -->
-        <button type="button" class="update-cart" data-action="remove">
-            <img src="/media/minus.png" alt="" width="16px" height="16px" class="mx-1" >
-        </button>
-        <span class="text-muted mx-1">{{ item_info.quantity }}</span>
-        <img class="update-cart" src="/media/plus.png" alt="" width="16px" height="16px" class="mx-1" data-action="add">
-        <!-- <div class="d-flex col align-item-center justify-content-center" style="flex-shrink: 0;"> -->
-        <!-- </div> -->
 
-        <span class="text-muted mx-3">{{ item_info.total_price }} р.</span>
+        <style>
+            .mw-cart-btn {
+                width: 16px;
+                height: 16px;
+                cursor: pointer;
+            }
+        </style>
 
-        <img class="update-cart" src="/media/cancel.png" alt="" width="16px" height="16px" class="mx-2" data-action="delete">
+        <img src="/media/minus.png" alt="" class="mx-1 mw-cart-btn" data-action="remove"
+            data-color="{{ item_info.item.color_code }}" data-itemcolorid="{{item_info.item.id}}" data-price="{{ item_info.item.price }}">
+        <span class="text-muted mx-1" id="quantity{{item_info.item.id}}">{{ item_info.quantity }}</span>
+        <img class="mw-cart-btn" src="/media/plus.png" alt="" class="mx-1 mw-cart-btn" data-action="add"
+            data-color="{{ item_info.item.color_code }}" data-itemcolorid="{{item_info.item.id}}" data-price="{{ item_info.item.price }}">
+
+        <div class="d-flex col align-item-center justify-content-center" style="flex-shrink: 0;"></div>
+
+        <span class="text-muted mx-3" id="price{{item_info.item.id}}">{{ item_info.total_price }}р.</span>
+        
+        <img class="mw-cart-btn mx-2" src="/media/cancel.png" alt="" data-action="delete">
         {% endfor %}
     </li>
     <li class="list-group-item d-flex justify-content-between">
         <span>Сумма: </span>
-        <strong>{{ order.order_total_price }} р.</strong>
+        <span id="total">{{ order.order_total_price }}р.</span>
     </li>
 </ul>
 
@@ -48,6 +55,7 @@
     </div>
 </form>
 
+<script type="text/javascript" src="{% static 'js/mw-cart.js' %}" charset="utf-8"></script>
+
 <script>
-    
 </script>

@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
-from django.views.generic import ListView, DetailView
 from django.conf import settings
 
 import json
@@ -75,5 +74,4 @@ def help(request):
 def updateContext(request):
     print(json.loads(request.COOKIES['cart']))
     context = cookieData(request)
-    print(context)
     return render(request, 'shop/cart.html', context)

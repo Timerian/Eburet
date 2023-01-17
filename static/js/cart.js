@@ -2,7 +2,7 @@
 
 
 // Getting total quantity of items in the cart
-function getItemQuantity(cart){
+function getTotalItemQuantity(cart){
     var Quantity = 0
     if (cart != {}){
         for (const key in cart){
@@ -14,16 +14,16 @@ function getItemQuantity(cart){
 
 // Setting value for the label indicating total item quantity in the cart (modal window)
 function setItemQuantity(cart){
-    var itemQuantity = getItemQuantity(cart)
+    var itemQuantity = getTotalItemQuantity(cart)
     document.querySelector('span.cart-label').textContent = itemQuantity
 }
 
 // Updating cookie which contain cart information
-function addCookieItem(itemColor_Id, action, color, quantity) {
+function addCookieItem(itemColor_Id, action, color, quantity, price) {
     console.log(cart)
     if (action == 'add'){
         if (cart[itemColor_Id] == undefined){
-            cart[itemColor_Id] = {'quantity': quantity, 'color': color}
+            cart[itemColor_Id] = {'quantity': quantity, 'color': color, 'price': price}
         }else{
             cart[itemColor_Id]['quantity'] += quantity
         }
@@ -48,19 +48,39 @@ function updateBtnsListener(){
 
     for (var i = 0; i < updateBtns.length; i++){
         updateBtns[i].addEventListener('click', function(){
-            // var item_id = this.dataset.item
             var action = this.dataset.action
-            selectColor = document.querySelector('input[name="radio"]:checked')
+            var selectColor = document.querySelector('input[name="radio"]:checked')
+
             var color = selectColor.dataset.color
             var itemColor_Id = selectColor.dataset.itemcolorid
             var quantity = parseInt(document.querySelector('span.update-cart').textContent)
+
+            var price = this.dataset.price
     
             console.log('itemColor_Id', itemColor_Id, 'action', action, 'color', color, 'quantity', quantity)   
-            addCookieItem(itemColor_Id, action, color, quantity)
+            addCookieItem(itemColor_Id, action, color, quantity, price)
+
+            console.log('update-cart')
     
             setItemQuantity(cart)
-        })
+            }
+        )
     }
+}
+
+function getTotalPrice(cart){
+    var Price = 0
+    if (cart != {}){
+        for (const key in cart){
+            Price += parseInt(cart[key]['quantity']) * parseInt(cart[key]['price']) ;
+        }
+    }
+    return Price
+}
+
+function setTotalPrice(cart){
+    var totalPrice = getTotalPrice(cart)
+    document.querySelector('#total').textContent = totalPrice + 'р.'
 }
 
 updateBtnsListener()

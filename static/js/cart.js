@@ -38,6 +38,10 @@ function addCookieItem(itemColor_Id, action, color, quantity, price) {
         }
     }
 
+    if (action == 'delete'){
+        delete cart[itemColor_Id]
+    }
+
     document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
 }
 

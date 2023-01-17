@@ -1,3 +1,16 @@
+function updateCartItemInfo(itemColor_Id, action, color, quantity, cart){
+    addCookieItem(itemColor_Id, action, color, quantity)
+    setItemQuantity(cart)
+    setTotalPrice(cart)
+    document.querySelector('span.badge').textContent = getTotalItemQuantity(cart)
+}
+
+function deleteItem(itemColor_Id, action, color, quantity, cart){
+    updateCartItemInfo(itemColor_Id, action, color, quantity, cart)
+    var list_item_id = '#mw-list-item' + itemColor_Id
+    document.querySelector(list_item_id).remove()
+}
+
 function cartBtnsListener(){
     var cartBtns = document.getElementsByClassName('mw-cart-btn')
 
@@ -14,32 +27,22 @@ function cartBtnsListener(){
                 var quantity = -1
                 
                 if (cart[itemColor_Id]['quantity'] == 1){
-                    addCookieItem(itemColor_Id, action, color, quantity)
-                    setItemQuantity(cart)
-                    setTotalPrice(cart)
-                    document.querySelector('span.badge').textContent = getTotalItemQuantity(cart)
-
-                    var list_item_id = '#mw-list-item' + itemColor_Id
-                    document.querySelector(list_item_id).remove()
+                    deleteItem(itemColor_Id, action, color, quantity, cart)
                     return
                 }
+                
+            } else if (action == 'delete') {
+                deleteItem(itemColor_Id, action, color, quantity, cart)
+                return
             }
-            
-            addCookieItem(itemColor_Id, action, color, quantity)
 
-            setItemQuantity(cart)
+            updateCartItemInfo(itemColor_Id, action, color, quantity, cart)
 
             var btnId = '#quantity' + itemColor_Id
             document.querySelector(btnId).textContent = cart[itemColor_Id]['quantity']
 
             var priceId = '#price' + itemColor_Id
             document.querySelector(priceId).textContent = (cart[itemColor_Id]['quantity'] * price) + 'р.'
-
-            setTotalPrice(cart)
-
-            document.querySelector('span.badge').textContent = getTotalItemQuantity(cart)
-
-            console.log('mw-cart-btn')
             }
         )
     }

@@ -39,7 +39,8 @@
 
         <span class="text-muted mx-3" id="price{{item_info.item.id}}">{{ item_info.total_price }}р.</span>
         
-        <img class="mw-cart-btn mx-2" src="/media/cancel.png" alt="" data-action="delete">
+        <img class="mw-cart-btn mx-2" src="/media/cancel.png" alt="" data-action="delete"
+        data-color="{{ item_info.item.color_code }}" data-itemcolorid="{{item_info.item.id}}" data-price="{{ item_info.item.price }}">
         {% endfor %}
     </li>
     <li class="list-group-item d-flex justify-content-between">
